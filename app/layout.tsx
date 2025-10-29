@@ -7,6 +7,7 @@ import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 
 import { Inter, Source_Serif_4 } from "next/font/google";
+import { MusicPlayer } from "@/components/music-player";
 
 // Initialize fonts with CSS variable names
 const inter = Inter({
@@ -42,6 +43,7 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${sourceSerif.variable} bg-background text-foreground`}
       >
+        <MusicPlayer src="/music/backsound2.mp3" title="Chill" artist="Me" />
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
           <Navbar />
           {children}
