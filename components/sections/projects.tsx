@@ -1,63 +1,60 @@
-"use client"
+// components/sections/projects.tsx
+"use client";
 
-import { motion } from "framer-motion"
-import { Card } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { ExternalLink, Github } from "lucide-react"
+import { motion } from "framer-motion";
+import { Card } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { ExternalLink, Github } from "lucide-react";
 
 const projects = [
   {
     id: 1,
-    title: "AI Content Generator",
+    title: "ASTRA Generative AI Monitoring Dashboard",
     description:
       "A generative AI tool for creating high-quality content with customizable parameters and real-time preview.",
-    tags: ["React", "Next.js", "AI/ML", "TypeScript"],
+    tags: [
+      "React",
+      "Next.js",
+      "Python",
+      "TypeScript",
+      "Tailwind CSS",
+      "AI",
+      "Langchain",
+    ],
     github: "https://github.com/Ferituaku",
     demo: "#",
+    gradient: "from-blue-500 to-cyan-500",
   },
   {
     id: 2,
-    title: "Design System UI Kit",
+    title: "Sistem Informasi Terpadu (SIT) prototype admission website",
     description:
-      "Comprehensive component library with 50+ reusable components, built with accessibility and performance in mind.",
-    tags: ["React", "Tailwind CSS", "Storybook", "TypeScript"],
+      "A prototype admission website for a university, featuring user-friendly navigation and responsive design.",
     github: "https://github.com/Ferituaku",
     demo: "#",
+    gradient: "from-blue-500 to-sky-500",
   },
   {
     id: 3,
-    title: "Interactive Dashboard",
+    title: "Infografis Dashboard Siaga Bencana Tembalang",
     description:
-      "Real-time analytics dashboard with data visualization, featuring smooth animations and responsive design.",
-    tags: ["Next.js", "Recharts", "Framer Motion", "PostgreSQL"],
+      " An interactive dashboard visualizing disaster preparedness data for Tembalang district.",
+    tags: ["Next.js", "Recharts", "TypeScript", "Tailwind CSS"],
     github: "https://github.com/Ferituaku",
     demo: "#",
+    gradient: "from-yellow-500 to-orange-500",
   },
   {
     id: 4,
-    title: "3D Web Experience",
-    description: "Immersive 3D web experience using Three.js and React Three Fiber with interactive elements.",
-    tags: ["Three.js", "React Three Fiber", "WebGL", "GLSL"],
+    title: "WASKITA by STOPHiva (HIV/AIDS education and support app)",
+    description:
+      " A webisite providing education and support for HIV/AIDS awareness and prevention.",
+    tags: ["Next.js", "Framer", "TypeScript", "Tailwind CSS", "MySQL"],
     github: "https://github.com/Ferituaku",
     demo: "#",
+    gradient: "from-red-500 to-rose-500",
   },
-  {
-    id: 5,
-    title: "Mobile App Design",
-    description: "End-to-end mobile app design with prototyping, user research, and design system documentation.",
-    tags: ["Figma", "UI/UX", "Prototyping", "Design System"],
-    github: "https://github.com/Ferituaku",
-    demo: "#",
-  },
-  {
-    id: 6,
-    title: "E-Commerce Platform",
-    description: "Full-stack e-commerce solution with payment integration, inventory management, and admin dashboard.",
-    tags: ["Next.js", "Stripe", "Supabase", "TypeScript"],
-    github: "https://github.com/Ferituaku",
-    demo: "#",
-  },
-]
+];
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -68,65 +65,97 @@ const containerVariants = {
       delayChildren: 0.2,
     },
   },
-}
+};
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 30 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.5 },
+    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
   },
-}
+};
 
 export function Projects() {
   return (
-    <section id="projects" className="relative py-20 sm:py-32 px-4 sm:px-6 lg:px-8 bg-muted/30">
-      <div className="max-w-7xl mx-auto">
+    <section
+      id="projects"
+      className="relative min-h-screen py-20 sm:py-32 px-4 sm:px-6 lg:px-8"
+    >
+      {/* Background gradient */}
+      <div className="absolute inset-0 bg-linear-to-b from-transparent via-black/20 to-transparent pointer-events-none" />
+
+      <div className="relative z-10 max-w-7xl mx-auto">
         <motion.div
-          className="mb-16"
+          className="mb-16 text-center"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-4xl sm:text-5xl font-bold mb-4 text-balance">Featured Projects</h2>
-          <p className="text-lg text-foreground/60 max-w-2xl">
-            A selection of my recent work showcasing my expertise in design, development, and AI integration.
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 text-balance">
+            <span className="bg-clip-text text-transparent bg-linear-to-r from-slate-500 via-blue-950 to-slate-500 dark:from-white dark:via-purple-200 dark:to-cyan-300">
+              Featured Projects
+            </span>
+          </h2>
+          <p className="text-lg sm:text-xl text-slate-700 dark:text-slate-300 transition-colors max-w-3xl mx-auto">
+            A selection of my recent work showcasing my expertise in design,
+            development, and AI integration.
           </p>
         </motion.div>
 
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-100px" }}
         >
           {projects.map((project) => (
-            <motion.div key={project.id} variants={itemVariants}>
-              <Card className="group h-full flex flex-col overflow-hidden hover:shadow-lg transition-shadow duration-300 border border-border/50 hover:border-accent/50">
+            <motion.div
+              key={project.id}
+              variants={{
+                hidden: { opacity: 0, y: 30 },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
+                },
+              }}
+            >
+              <Card className="group h-full flex flex-col overflow-hidden backdrop-blur-sm bg-slate-700 dark:bg-white/5 dark:border-white/10 hover:border-white hover:bg-slate-500 dark:hover:border-white/20 dark:hover:bg-white/10 transition-all duration-300">
+                {/* Gradient header */}
+                <div
+                  className={`h-2 bg-linear-to-r ${project.gradient} opacity-80 group-hover:opacity-100 transition-opacity`}
+                />
+
                 <div className="flex-1 p-6 flex flex-col">
-                  <h3 className="text-xl font-semibold mb-2 group-hover:text-accent transition-colors">
+                  <h3 className="text-xl font-semibold mb-3 text-white group-hover:text-cyan-300 transition-colors">
                     {project.title}
                   </h3>
-                  <p className="text-foreground/60 text-sm mb-4 flex-1">{project.description}</p>
+                  <p className="text-gray-300 text-sm mb-6 flex-1 leading-relaxed">
+                    {project.description}
+                  </p>
 
                   <div className="flex flex-wrap gap-2 mb-6">
-                    {project.tags.map((tag) => (
-                      <Badge key={tag} variant="secondary" className="text-xs">
+                    {project.tags?.map((tag) => (
+                      <Badge
+                        key={tag}
+                        variant="secondary"
+                        className="text-xs bg-white/10 text-gray-200 border-white/20 hover:bg-white/20"
+                      >
                         {tag}
                       </Badge>
                     ))}
                   </div>
                 </div>
 
-                <div className="px-6 pb-6 flex gap-3 border-t border-border/50 pt-4">
+                <div className="px-6 pb-6 flex gap-4 border-t border-white/10 pt-4">
                   <motion.a
                     href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-sm font-medium text-foreground/70 hover:text-accent transition-colors"
+                    className="flex items-center gap-2 text-sm font-medium text-gray-300 hover:text-cyan-300 transition-colors"
                     whileHover={{ x: 2 }}
                   >
                     <Github className="w-4 h-4" />
@@ -136,7 +165,7 @@ export function Projects() {
                     href={project.demo}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-sm font-medium text-foreground/70 hover:text-accent transition-colors"
+                    className="flex items-center gap-2 text-sm font-medium text-gray-300 hover:text-cyan-300 transition-colors"
                     whileHover={{ x: 2 }}
                   >
                     <ExternalLink className="w-4 h-4" />
@@ -149,5 +178,5 @@ export function Projects() {
         </motion.div>
       </div>
     </section>
-  )
+  );
 }
