@@ -1,8 +1,8 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import { LiquidMeshScene } from "@/components/3d/liquid-mesh"
-import { ArrowDown } from "lucide-react"
+import { motion } from "framer-motion";
+import { LiquidMeshScene } from "@/components/3d/liquid-mesh";
+import { ArrowDown } from "lucide-react";
 
 export function Hero() {
   const containerVariants = {
@@ -14,26 +14,32 @@ export function Hero() {
         delayChildren: 0.3,
       },
     },
-  }
+  };
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.8, ease: "easeOut" },
-    },
-  }
+  // const itemVariants = {
+  //   hidden: { opacity: 0, y: 20 },
+  //   visible: {
+  //     opacity: 1,
+  //     y: 0,
+  //     transition: {
+  //       duration: 0.8,
+  //       ease: [0.22, 1, 0.36, 1],
+  //     },
+  //   },
+  // };
 
   return (
-    <section id="home" className="relative min-h-screen w-full flex items-center justify-center overflow-hidden pt-16">
+    <section
+      id="home"
+      className="relative min-h-screen w-full flex items-center justify-center overflow-hidden pt-16"
+    >
       {/* 3D Background */}
-      <div className="absolute inset-0 w-full h-full">
+      <div className="fixed inset-0 -z-10">
         <LiquidMeshScene />
       </div>
 
       {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background/0 via-background/50 to-background" />
+      <div className="absolute inset-0 bg-linear-to-b from-background/0 via-background/50 to-background" />
 
       {/* Content */}
       <motion.div
@@ -42,14 +48,37 @@ export function Hero() {
         initial="hidden"
         animate="visible"
       >
-        <motion.div variants={itemVariants} className="mb-6">
+        <motion.div
+          variants={{
+            hidden: { opacity: 0, y: 20 },
+            visible: {
+              opacity: 1,
+              y: 0,
+              transition: {
+                duration: 0.8,
+                ease: [0.22, 1, 0.36, 1],
+              },
+            },
+          }}
+          className="mb-6"
+        >
           <span className="inline-block px-4 py-2 rounded-full bg-accent/10 text-accent text-sm font-medium">
             Welcome to my portfolio
           </span>
         </motion.div>
 
         <motion.h1
-          variants={itemVariants}
+          variants={{
+            hidden: { opacity: 0, y: 20 },
+            visible: {
+              opacity: 1,
+              y: 0,
+              transition: {
+                duration: 0.8,
+                ease: [0.22, 1, 0.36, 1],
+              },
+            },
+          }}
           className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight mb-6 text-balance"
         >
           Al Ferro Putra
@@ -58,17 +87,54 @@ export function Hero() {
         </motion.h1>
 
         <motion.p
-          variants={itemVariants}
+          variants={{
+            hidden: { opacity: 0, y: 20 },
+            visible: {
+              opacity: 1,
+              y: 0,
+              transition: {
+                duration: 0.8,
+                ease: [0.22, 1, 0.36, 1],
+              },
+            },
+          }}
           className="text-xl sm:text-2xl text-foreground/70 mb-8 max-w-2xl mx-auto text-balance"
         >
           UI/UX Designer & Generative AI Engineer
         </motion.p>
 
-        <motion.p variants={itemVariants} className="text-base sm:text-lg text-foreground/60 mb-12 max-w-2xl mx-auto">
-          Crafting beautiful, interactive digital experiences with modern design principles and cutting-edge technology.
+        <motion.p
+          variants={{
+            hidden: { opacity: 0, y: 20 },
+            visible: {
+              opacity: 1,
+              y: 0,
+              transition: {
+                duration: 0.8,
+                ease: [0.22, 1, 0.36, 1],
+              },
+            },
+          }}
+          className="text-base sm:text-lg text-foreground/60 mb-12 max-w-2xl mx-auto"
+        >
+          Crafting beautiful, interactive digital experiences with modern design
+          principles and cutting-edge technology.
         </motion.p>
 
-        <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <motion.div
+          variants={{
+            hidden: { opacity: 0, y: 20 },
+            visible: {
+              opacity: 1,
+              y: 0,
+              transition: {
+                duration: 0.8,
+                ease: [0.22, 1, 0.36, 1],
+              },
+            },
+          }}
+          className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+        >
           <motion.a
             href="#projects"
             className="px-8 py-3 bg-accent text-accent-foreground rounded-lg font-semibold hover:shadow-lg transition-shadow"
@@ -97,5 +163,5 @@ export function Hero() {
         <ArrowDown className="w-6 h-6 text-foreground/40" />
       </motion.div>
     </section>
-  )
+  );
 }
