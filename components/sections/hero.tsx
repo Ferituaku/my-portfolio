@@ -17,17 +17,17 @@ export function Hero() {
     },
   };
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.8,
-        ease: "easeInOut", // or any other valid easing function
-      },
-    },
-  };
+  // const itemVariants = {
+  //   hidden: { opacity: 0, y: 20 },
+  //   visible: {
+  //     opacity: 1,
+  //     y: 0,
+  //     transition: {
+  //       duration: 0.8,
+  //       ease: "easeInOut", // or any other valid easing function
+  //     },
+  //   },
+  // };
 
   return (
     <section
@@ -49,14 +49,37 @@ export function Hero() {
         initial="hidden"
         animate="visible"
       >
-        <motion.div variants={itemVariants} className="mb-6">
+        <motion.div
+          variants={{
+            hidden: { opacity: 0, y: 20 },
+            visible: {
+              opacity: 1,
+              y: 0,
+              transition: {
+                duration: 0.8,
+                ease: "easeInOut", // or any other valid easing function
+              },
+            },
+          }}
+          className="mb-6"
+        >
           <span className="inline-block px-4 py-2 rounded-full bg-blue-500/20 backdrop-blur-sm border border-blue-400/30 text-blue-300 text-sm font-medium">
             Welcome to my portfolio
           </span>
         </motion.div>
 
         <motion.h1
-          variants={itemVariants}
+          variants={{
+            hidden: { opacity: 0, y: 20 },
+            visible: {
+              opacity: 1,
+              y: 0,
+              transition: {
+                duration: 0.8,
+                ease: "easeInOut", // or any other valid easing function
+              },
+            },
+          }}
           className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight mb-6 text-balance"
         >
           <span className="text-white">Al Ferro Putra</span>
@@ -67,14 +90,34 @@ export function Hero() {
         </motion.h1>
 
         <motion.p
-          variants={itemVariants}
+          variants={{
+            hidden: { opacity: 0, y: 20 },
+            visible: {
+              opacity: 1,
+              y: 0,
+              transition: {
+                duration: 0.8,
+                ease: "easeInOut", // or any other valid easing function
+              },
+            },
+          }}
           className="text-xl sm:text-2xl lg:text-3xl text-gray-200 mb-8 max-w-3xl mx-auto text-balance font-light"
         >
           UI/UX Designer & Generative AI Engineer
         </motion.p>
 
         <motion.p
-          variants={itemVariants}
+          variants={{
+            hidden: { opacity: 0, y: 20 },
+            visible: {
+              opacity: 1,
+              y: 0,
+              transition: {
+                duration: 0.8,
+                ease: "easeInOut", // or any other valid easing function
+              },
+            },
+          }}
           className="text-base sm:text-lg lg:text-xl text-gray-300 mb-12 max-w-2xl mx-auto leading-relaxed"
         >
           Crafting beautiful, interactive digital experiences with modern design
@@ -82,7 +125,17 @@ export function Hero() {
         </motion.p>
 
         <motion.div
-          variants={itemVariants}
+          variants={{
+            hidden: { opacity: 0, y: 20 },
+            visible: {
+              opacity: 1,
+              y: 0,
+              transition: {
+                duration: 0.8,
+                ease: "easeInOut", // or any other valid easing function
+              },
+            },
+          }}
           className="flex flex-col sm:flex-row gap-4 justify-center items-center"
         >
           <motion.a
