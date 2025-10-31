@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState, useMemo } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { useTheme } from "next-themes";
 import * as THREE from "three";
 
 // Hook to track scroll progress
@@ -35,7 +34,7 @@ function Particles({
   scrollProgress: number;
 }) {
   const points = useRef<THREE.Points>(null);
-  const { mouse } = useThree();
+  // const { mouse } = useThree(); // <-- DIHAPUS: Ini penyebab interaksi mouse
 
   const particlesPosition = useMemo(() => {
     const positions = new Float32Array(count * 3);
@@ -53,7 +52,7 @@ function Particles({
     const positions = points.current.geometry.attributes.position
       .array as Float32Array;
 
-    // Spread particles based on scroll
+    // Spread particles based on scroll (TETAP)
     const spread = 1 + scrollProgress * 9;
 
     for (let i = 0; i < count; i++) {
@@ -61,23 +60,23 @@ function Particles({
       const x = positions[i3];
       const y = positions[i3 + 1];
 
-      // Wave effect that changes with scroll
+      // Wave effect that changes with scroll (TETAP)
       positions[i3 + 2] =
         Math.sin(clock.elapsedTime * (0.5 + scrollProgress) + x * 0.5) * 0.5 +
         Math.cos(clock.elapsedTime * (0.3 + scrollProgress) + y * 0.5) * 0.5;
 
-      // Mouse interaction
-      const dx = x - mouse.x * 5;
-      const dy = y - mouse.y * 5;
-      const dist = Math.sqrt(dx * dx + dy * dy);
-      const force = Math.max(0, 1 - dist / 3);
+      // === BLOK INTERAKSI MOUSE DIHAPUS ===
+      // const dx = x - mouse.x * 5;
+      // const dy = y - mouse.y * 5;
+      // const dist = Math.sqrt(dx * dx + dy * dy);
+      // const force = Math.max(0, 1 - dist / 3);
+      // =====================================
 
-      positions[i3] +=
-        (Math.random() - 0.5) * 0.01 + (mouse.x - x) * force * 0.01;
-      positions[i3 + 1] +=
-        (Math.random() - 0.5) * 0.01 + (mouse.y - y) * force * 0.01;
+      // Update posisi HANYA dengan pergerakan acak
+      positions[i3] += (Math.random() - 0.5) * 0.01;
+      positions[i3 + 1] += (Math.random() - 0.5) * 0.01;
 
-      // Boundary check with scroll-based spread
+      // Boundary check with scroll-based spread (TETAP)
       const maxSpread = 5 * spread;
       if (Math.abs(positions[i3]) > maxSpread) positions[i3] *= 0.95;
       if (Math.abs(positions[i3 + 1]) > maxSpread) positions[i3 + 1] *= 0.95;
@@ -86,7 +85,7 @@ function Particles({
     points.current.geometry.attributes.position.needsUpdate = true;
   });
 
-  // Color changes with scroll
+  // Color changes with scroll (Tidak ada perubahan)
   const particleColor = useMemo(() => {
     return new THREE.Color().setHSL(0.6 - scrollProgress * 0.3, 1, 0.5);
   }, [scrollProgress]);
@@ -96,9 +95,7 @@ function Particles({
       <bufferGeometry>
         <bufferAttribute
           attach="attributes-position"
-          count={count}
-          array={particlesPosition}
-          itemSize={3}
+          args={[particlesPosition, 3]}
         />
       </bufferGeometry>
       <pointsMaterial
@@ -112,7 +109,6 @@ function Particles({
     </points>
   );
 }
-
 // Main animated mesh with morphing and scroll reactivity
 function AnimatedMesh({ scrollProgress }: { scrollProgress: number }) {
   const meshRef = useRef<THREE.Mesh>(null);
